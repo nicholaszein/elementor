@@ -6,7 +6,7 @@
 		{{ id_attribute }} 
 		{{ settings.attributes | raw }}
 	>
-	{% set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' %}
+	{% set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><ul><ol><li><br>' %}
 
 	{% if settings.link.href %}
 		<{{ settings.link.tag | e('html_tag') }} 

@@ -1,5 +1,6 @@
 {% if settings.paragraph is not empty %}
 	{% set id_attribute = settings._cssid is not empty ? 'id=' ~ settings._cssid | e('html_attr') : '' %}
+	{% set allowed_tags = '<b><strong><sup><sub><s><em><u><ul><ol><li><blockquote><a><del><span><br>' %}
 		<{{ settings.tag | e('html_tag') }} class="{{ settings.classes | merge( [ base_styles.base ] ) | join(' ') }}" data-interaction-id="{{ id }}" {{ id_attribute }} {{ settings.attributes | raw }}>
 			{% if settings.link.href %}
 				<{{ settings.link.tag | e('html_tag') }}
@@ -11,7 +12,7 @@
 						{{ settings.paragraph | striptags(allowed_tags) | raw }}
 				</{{ settings.link.tag | e('html_tag') }}>
 			{% else %}
-					{{ settings.paragraph | striptags('<b><strong><sup><sub><s><em><u><ul><ol><li><blockquote><a><del><span><br>') | raw }}
+					{{ settings.paragraph | striptags(allowed_tags) | raw }}
 			{% endif %}
 		</{{ settings.tag | e('html_tag') }}>
 {% endif %}
